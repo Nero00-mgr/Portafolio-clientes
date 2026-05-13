@@ -484,6 +484,13 @@ footer strong { color: white; font-family: 'Fraunces', serif; font-size: 16px; }
   border-color: #f0f0f0;
 }
 
+/* PREVENIR SCROLL DE FONDO EN MOVIL */
+body.modal-abierto {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -491,56 +498,139 @@ footer strong { color: white; font-family: 'Fraunces', serif; font-size: 16px; }
   .resenas { flex-wrap: wrap; }
   .resena-stat { padding: 1rem 1.25rem; }
   .resena-divider { display: none; }
-  .form-row { grid-template-columns: 1fr; }
   .wa-bar { flex-direction: column; text-align: center; }
+  .clinicas-grid { grid-template-columns: 1fr; }
+  .equipo-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
 
-  .modal-bg { padding: 0; align-items: flex-end; }
-  .modal { border-radius: 20px 20px 0 0; max-height: 92vh; width: 100%; padding: 1.5rem; }
-  .modal-agenda { border-radius: 0; max-height: 100vh; }
-  .agenda-header { padding: 1.25rem 1.25rem; flex-direction: column; gap: 0.75rem; }
-  .agenda-header-text { width: 100%; }
-  .agenda-titulo { font-size: 20px; }
+  /* CONTACTO MOVIL */
+  .contacto-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: #eee;
+    border: 1px solid #eee;
+  }
+  .contacto-card {
+    background: var(--white);
+    padding: 1rem;
+    align-items: center;
+    text-align: center;
+  }
+  .contacto-valor {
+    font-size: 12px;
+    word-break: break-word;
+  }
+  .contacto-valor.link {
+    font-size: 12px;
+  }
+
+  /* IMAGENES SIN CORTE */
+  .banner-img img {
+    object-fit: cover;
+    will-change: auto;
+  }
+  .equipo-foto img {
+    will-change: auto;
+  }
+
+  /* MODAL DESDE ABAJO */
+  .modal-bg {
+    padding: 0;
+    align-items: flex-end;
+    backdrop-filter: none;
+  }
+  .modal {
+    border-radius: 20px 20px 0 0;
+    max-height: 88vh;
+    width: 100%;
+    padding: 1.5rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    transform: none;
+    position: relative;
+  }
+  .modal-agenda {
+    border-radius: 20px 20px 0 0;
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+  }
+  .agenda-header {
+    padding: 1.25rem;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
+  .agenda-titulo { font-size: 18px; }
   .pasos-indicador { align-self: flex-start; }
-  .agenda-body { padding: 1rem 1.25rem; gap: 1rem; overflow-y: auto; max-height: calc(92vh - 120px); }
 
-  .especialidades-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  /* SCROLL INTERNO SOLO EN EL BODY DEL MODAL */
+  .agenda-panel {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    max-height: calc(92vh - 130px);
+    flex: 1;
+  }
+  .agenda-body {
+    padding: 1rem 1.25rem;
+    gap: 1rem;
+  }
+
+  /* ESPECIALIDADES */
+  .especialidades-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
   .esp-item { padding: 8px 4px; font-size: 10px; }
-  .esp-item span { font-size: 18px; }
+  .esp-item span { font-size: 16px; }
 
+  /* SUCURSALES */
   .sucursal-item { padding: 10px; }
   .sucursal-nombre { font-size: 13px; }
 
-  .prof-item { padding: 10px; gap: 10px; }
-  .prof-foto { width: 40px; height: 40px; }
+  /* PROFESIONALES */
+  .prof-item { padding: 10px; gap: 8px; }
+  .prof-foto { width: 38px; height: 38px; }
   .prof-nombre { font-size: 13px; }
   .prof-esp { font-size: 11px; }
+  .disp-texto { font-size: 11px; }
 
+  /* CALENDARIO */
+  .cal-nav { margin-bottom: 6px; }
+  .cal-semana-label { font-size: 11px; }
   .cal-dias { gap: 3px; }
   .cal-dia { padding: 6px 2px; }
   .cal-dia-num { font-size: 13px; }
   .cal-dia-nombre { font-size: 9px; }
-  .cal-semana-label { font-size: 11px; }
+  .cal-nav-btn { width: 26px; height: 26px; font-size: 16px; }
 
+  /* HORARIOS */
   .horarios-grid { grid-template-columns: repeat(3, 1fr); gap: 5px; }
-  .horario-btn { padding: 8px 2px; font-size: 12px; }
+  .horario-btn { padding: 8px 2px; font-size: 11px; }
 
+  /* BOTONES PASO */
   .paso-btns { gap: 8px; }
   .btn-volver { padding: 10px 14px; font-size: 12px; }
-  .btn-primary { padding: 11px 18px; font-size: 13px; }
+  .btn-primary { padding: 11px 16px; font-size: 13px; }
+  .btn-primary.full { padding: 13px; }
 
-  .resumen-cita-inner { padding: 0.75rem 1rem; }
-  .res-fila { font-size: 12px; }
+  /* RESUMEN */
+  .res-fila { font-size: 12px; flex-wrap: wrap; gap: 4px; }
+  .resumen-cita-inner { padding: 0.75rem; }
 
+  /* FORMULARIO */
+  .form-row { grid-template-columns: 1fr; }
   .agenda-form-datos .form-row { grid-template-columns: 1fr; }
 
+  /* BANNER PROF */
   .prof-seleccionado-banner { padding: 10px 12px; }
-  .banner-prof-foto { width: 36px; height: 36px; }
+  .banner-prof-foto { width: 34px; height: 34px; }
   .banner-prof-nombre { font-size: 13px; }
+  .banner-prof-esp { font-size: 11px; }
 
-  .modal-auth { border-radius: 20px 20px 0 0; width: 100%; }
-
-  .clinicas-grid { grid-template-columns: 1fr; }
-  .equipo-grid { grid-template-columns: 1fr; }
-  .contacto-grid { grid-template-columns: repeat(2, 1fr); }
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  /* LOGIN */
+  .modal-auth {
+    border-radius: 20px 20px 0 0;
+    width: 100%;
+  }
 }

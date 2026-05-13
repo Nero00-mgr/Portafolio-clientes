@@ -746,30 +746,36 @@
     document.body.style.overflow = ''
   }
   function abrirAgenda() {
-    semanaOffset = 0; fechaSeleccionada = null; horarioSeleccionado = null
-    espSeleccionada = null; profSeleccionado = null; sucursalSeleccionada = 'Sonrisas Providencia'
-    document.querySelectorAll('.agenda-panel').forEach(p => p.style.display = 'none')
-    document.getElementById('panel1').style.display = 'block'
-    document.querySelectorAll('.esp-item').forEach(e => e.classList.remove('activo'))
-    document.querySelectorAll('.paso-dot').forEach((d,i) => { d.classList.toggle('activo', i===0); d.classList.remove('completo') })
-    document.getElementById('agendaTitulo').textContent = 'Agenda tu hora'
-    document.getElementById('agendaSub').textContent = 'Completa los pasos para encontrar el horario ideal.'
-    document.getElementById('horariosStep').style.display = 'none'
-    document.getElementById('modalAgendaBg').classList.add('activo')
-    document.body.style.overflow = 'hidden'
-  }
-  function cerrarAgenda() {
-    document.getElementById('modalAgendaBg').classList.remove('activo')
-    document.body.style.overflow = ''
-  }
+  semanaOffset = 0; fechaSeleccionada = null; horarioSeleccionado = null
+  espSeleccionada = null; profSeleccionado = null
+  sucursalSeleccionada = 'Sonrisas Providencia'
+  document.querySelectorAll('.agenda-panel').forEach(p => p.style.display = 'none')
+  document.getElementById('panel1').style.display = 'block'
+  document.querySelectorAll('.esp-item').forEach(e => e.classList.remove('activo'))
+  document.querySelectorAll('.paso-dot').forEach((d, i) => {
+    d.classList.toggle('activo', i === 0)
+    d.classList.remove('completo')
+  })
+  document.getElementById('agendaTitulo').textContent = 'Agenda tu hora'
+  document.getElementById('agendaSub').textContent = 'Completa los pasos para encontrar el horario ideal.'
+  document.getElementById('horariosStep').style.display = 'none'
+  document.getElementById('modalAgendaBg').classList.add('activo')
+  document.body.classList.add('modal-abierto')
+}
+
+function cerrarAgenda() {
+  document.getElementById('modalAgendaBg').classList.remove('activo')
+  document.body.classList.remove('modal-abierto')
+  document.body.style.overflow = ''
+}
   function abrirLogin() {
-    document.getElementById('modalLoginBg').classList.add('activo')
-    document.body.style.overflow = 'hidden'
-  }
-  function cerrarLogin() {
-    document.getElementById('modalLoginBg').classList.remove('activo')
-    document.body.style.overflow = ''
-  }
+  document.getElementById('modalLoginBg').classList.add('activo')
+  document.body.classList.add('modal-abierto')
+}
+function cerrarLogin() {
+  document.getElementById('modalLoginBg').classList.remove('activo')
+  document.body.classList.remove('modal-abierto')
+}
   function switchTab(tab) {
     document.getElementById('panelLogin').style.display = tab==='login'?'block':'none'
     document.getElementById('panelRegister').style.display = tab==='register'?'block':'none'
