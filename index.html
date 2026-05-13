@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sonrisas — Centro Dental</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>✓ Sin lista de espera</span><span>·</span>
+    <span>✓ Presupuesto sin costo</span><span>·</span>
+    <span>✓ Pago en cuotas</span><span>·</span>
+    <span>✓ Atención para toda la familia</span><span>·</span>
+    <span>✓ Lunes a Sábado</span><span>·</span>
+    <span>✓ Sin lista de espera</span><span>·</span>
+    <span>✓ Presupuesto sin costo</span><span>·</span>
+    <span>✓ Pago en cuotas</span><span>·</span>
+    <span>✓ Atención para toda la familia</span><span>·</span>
+    <span>✓ Lunes a Sábado</span><span>·</span>
+    <span>✓ Sin lista de espera</span><span>·</span>
+    <span>✓ Presupuesto sin costo</span><span>·</span>
+    <span>✓ Pago en cuotas</span><span>·</span>
+    <span>✓ Atención para toda la familia</span><span>·</span>
+    <span>✓ Lunes a Sábado</span><span>·</span>
+    <span>✓ Sin lista de espera</span><span>·</span>
+    <span>✓ Presupuesto sin costo</span><span>·</span>
+    <span>✓ Pago en cuotas</span><span>·</span>
+    <span>✓ Atención para toda la familia</span><span>·</span>
+    <span>✓ Lunes a Sábado</span><span>·</span>
+  </div>
+</div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Sonrisas<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#clinicas">Clínicas</a></li>
+      <li><a href="#servicios">Especialidades</a></li>
+      <li><a href="#equipo">Profesionales</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+    </ul>
+    <button class="nav-perfil" onclick="abrirLogin()" title="Mi cuenta">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    </button>
+  </nav>
+
+  <!-- BANNER -->
+  <section class="banner" id="inicio">
+    <div class="banner-img">
+      <img src="img/sala.jpg" alt="Centro Dental Sonrisas">
+      <div class="banner-overlay"></div>
+    </div>
+    <div class="banner-content">
+      <p class="banner-label">Centro Dental en Providencia</p>
+      <h1>Tu sonrisa merece el mejor <em>cuidado</em></h1>
+      <p class="banner-sub">Atención dental profesional, sin filas ni esperas innecesarias.</p>
+      <div class="banner-btns">
+        <button class="btn-primary" onclick="abrirAgenda()">Agendar hora</button>
+        <a href="#servicios" class="btn-outline-white">Ver especialidades</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section class="resenas">
+    <div class="resena-stat"><span class="resena-num">238</span><span class="resena-label">Reseñas en Google</span></div>
+    <div class="resena-divider"></div>
+    <div class="resena-stat"><span class="resena-num">4.9★</span><span class="resena-label">Calificación promedio</span></div>
+    <div class="resena-divider"></div>
+    <div class="resena-stat"><span class="resena-num">10+</span><span class="resena-label">Especialidades</span></div>
+    <div class="resena-divider"></div>
+    <div class="resena-stat"><span class="resena-num">+5 años</span><span class="resena-label">De experiencia</span></div>
+  </section>
+
+  <!-- CLINICAS -->
+  <section class="section" id="clinicas">
+    <p class="section-label">Nuestras clínicas</p>
+    <h2 class="section-title">Encuéntranos cerca de ti</h2>
+    <div class="clinicas-grid">
+      <div class="clinica-card activa">
+        <div class="clinica-badge">Principal</div>
+        <p class="clinica-nombre">Sonrisas Providencia</p>
+        <p class="clinica-dir">📍 San Pío X 2445, oficina 702</p>
+        <p class="clinica-horario">🕘 Lun–Vie 9:00–19:00 · Sáb 9:00–14:00</p>
+        <p class="clinica-tel">📞 9 4681 9850</p>
+      </div>
+      <div class="clinica-card">
+        <div class="clinica-badge proximamente">Próximamente</div>
+        <p class="clinica-nombre">Sonrisas Las Condes</p>
+        <p class="clinica-dir">📍 Av. Apoquindo 4501</p>
+        <p class="clinica-horario">🕘 Horario por confirmar</p>
+        <p class="clinica-tel">📞 Por confirmar</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="section" id="servicios">
+    <p class="section-label">Especialidades</p>
+    <h2 class="section-title">Todo lo que necesitas, en un solo lugar</h2>
+    <div class="services-grid">
+      <div class="service-card" id="blanqueamiento" onclick="abrirServicio('blanqueamiento')"><span class="service-icon">✨</span><p class="service-name">Blanqueamiento dental</p><p class="service-desc">Resultados visibles desde la primera sesión</p><span class="service-link">Ver más →</span></div>
+      <div class="service-card" onclick="abrirServicio('carillas')"><span class="service-icon">💎</span><p class="service-name">Carillas y coronas</p><p class="service-desc">Estética y función en perfecta armonía</p><span class="service-link">Ver más →</span></div>
+      <div class="service-card" onclick="abrirServicio('cirugia')"><span class="service-icon">🔬</span><p class="service-name">Cirugía oral</p><p class="service-desc">Procedimientos seguros y sin dolor</p><span class="service-link">Ver más →</span></div>
+      <div class="service-card" id="implantes" onclick="abrirServicio('implantes')"><span class="service-icon">🦷</span><p class="service-name">Implantes dentales</p><p class="service-desc">Solución permanente y natural</p><span class="service-link">Ver más →</span></div>
+      <div class="service-card" id="ortodoncia" onclick="abrirServicio('ortodoncia')"><span class="service-icon">😁</span><p class="service-name">Ortodoncia</p><p class="service-desc">Brackets y alineadores transparentes</p><span class="service-link">Ver más →</span></div>
+      <div class="service-card" onclick="abrirServicio('odontopediatria')"><span class="service-icon">👶</span><p class="service-name">Odontopediatría</p><p class="service-desc">Atención especializada para los más chicos</p><span class="service-link">Ver más →</span></div>
+      <div class="service-card" onclick="abrirServicio('endodoncia')"><span class="service-icon">🩺</span><p class="service-name">Endodoncia</p><p class="service-desc">Tratamiento de conducto sin dolor</p><span class="service-link">Ver más →</span></div>
+      <div class="service-card" onclick="abrirServicio('periodoncia')"><span class="service-icon">🌿</span><p class="service-name">Periodoncia</p><p class="service-desc">Salud de encías y tejidos de soporte</p><span class="service-link">Ver más →</span></div>
+      <div class="service-card" onclick="abrirServicio('bichectomia')"><span class="service-icon">✂️</span><p class="service-name">Bichectomía</p><p class="service-desc">Define tu rostro con un procedimiento mínimo</p><span class="service-link">Ver más →</span></div>
+      <div class="service-card" id="estetica" onclick="abrirServicio('estetica')"><span class="service-icon">⭐</span><p class="service-name">Odontología estética</p><p class="service-desc">Diseño de sonrisa personalizado</p><span class="service-link">Ver más →</span></div>
+    </div>
+  </section>
+
+  <!-- EQUIPO -->
+  <section class="section" id="equipo">
+    <p class="section-label">Nuestro equipo</p>
+    <h2 class="section-title">Los profesionales detrás de tu sonrisa</h2>
+    <div class="equipo-grid">
+
+      <div class="equipo-card">
+        <div class="equipo-foto">
+          <img src="img/Dentista-para-profesionales.jpg" alt="Dr. Roberto Mora">
+        </div>
+        <div class="equipo-info">
+          <p class="equipo-nombre">Dr. Roberto Mora</p>
+          <p class="equipo-especialidad">Director clínico · Implantología y Cirugía Oral</p>
+          <p class="equipo-desc">Más de 12 años de experiencia en implantes dentales y cirugía reconstructiva. Formado en la Universidad de Chile con postgrado en España.</p>
+          <div class="equipo-tags">
+            <span>Implantes</span><span>Cirugía oral</span><span>Endodoncia</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="equipo-card">
+        <div class="equipo-foto azul">
+          <img src="img/Dentista-para-profesionales.jpg" alt="Dra. Camila Araya">
+        </div>
+        <div class="equipo-info">
+          <p class="equipo-nombre">Dra. Camila Araya</p>
+          <p class="equipo-especialidad">Ortodoncista</p>
+          <p class="equipo-desc">Especialista en ortodoncia convencional y alineadores invisibles. Atiende a niños, adolescentes y adultos con un enfoque personalizado.</p>
+          <div class="equipo-tags">
+            <span>Ortodoncia</span><span>Alineadores</span><span>Odontopediatría</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="equipo-card">
+        <div class="equipo-foto naranja">
+          <img src="img/Dentista-para-profesionales.jpg" alt="Dra. Valentina Pérez">
+        </div>
+        <div class="equipo-info">
+          <p class="equipo-nombre">Dra. Valentina Pérez</p>
+          <p class="equipo-especialidad">Odontología Estética</p>
+          <p class="equipo-desc">Especialista en diseño de sonrisa, blanqueamiento y carillas de porcelana. Combina criterio estético y técnica para resultados naturales.</p>
+          <div class="equipo-tags">
+            <span>Blanqueamiento</span><span>Carillas</span><span>Diseño de sonrisa</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="equipo-card">
+        <div class="equipo-foto verde">
+          <img src="img/Dentista-para-profesionales.jpg" alt="Dr. Matías Soto">
+        </div>
+        <div class="equipo-info">
+          <p class="equipo-nombre">Dr. Matías Soto</p>
+          <p class="equipo-especialidad">Periodoncia y Bichectomía</p>
+          <p class="equipo-desc">Especialista en salud de encías y procedimientos estéticos faciales mínimamente invasivos. Formado en la Universidad Católica.</p>
+          <div class="equipo-tags">
+            <span>Periodoncia</span><span>Bichectomía</span><span>Estética facial</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="section" id="contacto">
+    <p class="section-label">Contacto</p>
+    <h2 class="section-title">Estamos para ayudarte</h2>
+    <div class="contacto-grid">
+      <div class="contacto-card">
+        <span class="contacto-icon">📞</span>
+        <p class="contacto-titulo">Teléfono</p>
+        <p class="contacto-valor">9 4681 9850</p>
+      </div>
+      <div class="contacto-card">
+        <span class="contacto-icon">💬</span>
+        <p class="contacto-titulo">WhatsApp</p>
+        <a href="https://wa.me/56946819850" class="contacto-valor link" target="_blank">Escribir ahora →</a>
+      </div>
+      <div class="contacto-card">
+        <span class="contacto-icon">🕘</span>
+        <p class="contacto-titulo">Horario</p>
+        <p class="contacto-valor">Lun–Vie 9:00–19:00<br>Sáb 9:00–14:00</p>
+      </div>
+      <div class="contacto-card">
+        <span class="contacto-icon">📧</span>
+        <p class="contacto-titulo">Email</p>
+        <p class="contacto-valor">contacto@sonrisasdental.cl</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- UBICACION -->
+  <section class="section" id="ubicacion">
+    <p class="section-label">Ubicación</p>
+    <h2 class="section-title">¿Cómo llegar?</h2>
+    <div class="mapa-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3330.3!2d-70.6147!3d-33.4329!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDI1JzU4LjQiUyA3MMKwMzYnNTIuOSJX!5e0!3m2!1ses!2scl!4v1"
+        width="100%" height="380" style="border:0; border-radius:16px;" allowfullscreen loading="lazy">
+      </iframe>
+      <div class="mapa-info">
+        <p>📍 <strong>San Pío X 2445, oficina 702</strong> · Providencia, Santiago</p>
+        <p style="margin-top:8px; font-size:13px; color:var(--muted)">Metro más cercano: Pedro de Valdivia (Línea 1)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODAL SERVICIO -->
+  <div class="modal-bg" id="modalServicioBg" onclick="cerrarServicio()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="cerrarServicio()">✕</button>
+      <div class="modal-icon" id="modalIcono"></div>
+      <h3 class="modal-titulo" id="modalTitulo"></h3>
+      <p class="modal-desc" id="modalDesc"></p>
+      <ul class="modal-lista" id="modalLista"></ul>
+      <button class="btn-primary full" onclick="cerrarServicio(); abrirAgenda()">Agendar hora para este servicio</button>
+    </div>
+  </div>
+
+  <!-- MODAL AGENDA -->
+<div class="modal-bg" id="modalAgendaBg" onclick="cerrarAgenda()">
+  <div class="modal modal-agenda" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="cerrarAgenda()">✕</button>
+
+    <div class="agenda-header">
+      <div class="agenda-header-text">
+        <p class="agenda-label">Centro Dental Sonrisas</p>
+        <h3 class="agenda-titulo" id="agendaTitulo">Agenda tu hora</h3>
+        <p class="agenda-sub" id="agendaSub">Completa los pasos para encontrar el horario ideal.</p>
+      </div>
+      <div class="pasos-indicador">
+        <div class="paso-dot activo" id="dot1">1</div>
+        <div class="paso-linea"></div>
+        <div class="paso-dot" id="dot2">2</div>
+        <div class="paso-linea"></div>
+        <div class="paso-dot" id="dot3">3</div>
+        <div class="paso-linea"></div>
+        <div class="paso-dot" id="dot4">4</div>
+      </div>
+    </div>
+
+    <!-- PASO 1: ESPECIALIDAD Y SUCURSAL -->
+    <div class="agenda-panel" id="panel1">
+      <div class="agenda-body">
+        <div class="agenda-step">
+          <p class="agenda-section-label">¿Qué tipo de consulta buscas?</p>
+          <div class="especialidades-grid" id="especialidadesGrid">
+            <div class="esp-item" onclick="seleccionarEsp(this, 'Blanqueamiento dental')"><span>✨</span>Blanqueamiento</div>
+            <div class="esp-item" onclick="seleccionarEsp(this, 'Carillas y coronas')"><span>💎</span>Carillas</div>
+            <div class="esp-item" onclick="seleccionarEsp(this, 'Cirugía oral')"><span>🔬</span>Cirugía oral</div>
+            <div class="esp-item" onclick="seleccionarEsp(this, 'Implantes dentales')"><span>🦷</span>Implantes</div>
+            <div class="esp-item" onclick="seleccionarEsp(this, 'Ortodoncia')"><span>😁</span>Ortodoncia</div>
+            <div class="esp-item" onclick="seleccionarEsp(this, 'Odontopediatría')"><span>👶</span>Infantil</div>
+            <div class="esp-item" onclick="seleccionarEsp(this, 'Endodoncia')"><span>🩺</span>Endodoncia</div>
+            <div class="esp-item" onclick="seleccionarEsp(this, 'Periodoncia')"><span>🌿</span>Periodoncia</div>
+            <div class="esp-item" onclick="seleccionarEsp(this, 'Bichectomía')"><span>✂️</span>Bichectomía</div>
+            <div class="esp-item" onclick="seleccionarEsp(this, 'Odontología estética')"><span>⭐</span>Estética</div>
+          </div>
+        </div>
+
+        <div class="agenda-step">
+          <p class="agenda-section-label">¿En qué sucursal te atiendes?</p>
+          <div class="sucursales-lista">
+            <div class="sucursal-item activo" onclick="seleccionarSucursal(this, 'Sonrisas Providencia', 'San Pío X 2445, oficina 702')">
+              <div class="sucursal-icono">🏥</div>
+              <div class="sucursal-info">
+                <p class="sucursal-nombre">Sonrisas Providencia</p>
+                <p class="sucursal-dir">San Pío X 2445, oficina 702</p>
+              </div>
+              <div class="prof-check">✓</div>
+            </div>
+            <div class="sucursal-item" onclick="seleccionarSucursal(this, 'Sonrisas Las Condes', 'Av. Apoquindo 4501')">
+              <div class="sucursal-icono">🏥</div>
+              <div class="sucursal-info">
+                <p class="sucursal-nombre">Sonrisas Las Condes</p>
+                <p class="sucursal-dir">Av. Apoquindo 4501</p>
+              </div>
+              <div class="prof-check">✓</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary full" onclick="irPaso(2)" id="btnPaso1">Siguiente →</button>
+      </div>
+    </div>
+
+    <!-- PASO 2: PROFESIONAL -->
+    <div class="agenda-panel" id="panel2" style="display:none">
+      <div class="agenda-body">
+        <div class="agenda-step">
+          <p class="agenda-section-label">Especialistas disponibles para <span id="espSelLabel" style="color:var(--brand)"></span></p>
+          <div class="profesionales-lista" id="profesionalesList"></div>
+        </div>
+        <div class="paso-btns">
+          <button class="btn-volver" onclick="irPaso(1)">← Volver</button>
+          <button class="btn-primary" onclick="irPaso(3)" id="btnPaso2">Siguiente →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASO 3: CALENDARIO Y HORARIO -->
+    <div class="agenda-panel" id="panel3" style="display:none">
+      <div class="agenda-body">
+
+        <div class="prof-seleccionado-banner" id="profBanner"></div>
+
+        <div class="agenda-step">
+          <p class="agenda-section-label">Selecciona una fecha</p>
+          <div class="cal-nav">
+            <button class="cal-nav-btn" onclick="cambiarSemana(-1)">‹</button>
+            <span class="cal-semana-label" id="calLabel"></span>
+            <button class="cal-nav-btn" onclick="cambiarSemana(1)">›</button>
+          </div>
+          <div class="cal-dias" id="calDias"></div>
+        </div>
+
+        <div class="agenda-step" id="horariosStep" style="display:none">
+          <p class="agenda-section-label">Horarios disponibles — <span id="fechaSelLabel" style="color:var(--brand); font-weight:500;"></span></p>
+          <div class="horarios-grid" id="horariosGrid"></div>
+        </div>
+
+        <div class="paso-btns">
+          <button class="btn-volver" onclick="irPaso(2)">← Volver</button>
+          <button class="btn-primary" onclick="irPaso(4)" id="btnPaso3">Siguiente →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASO 4: DATOS -->
+    <div class="agenda-panel" id="panel4" style="display:none">
+      <div class="agenda-body">
+        <div class="resumen-cita" id="resumenCita"></div>
+        <div class="agenda-step">
+          <p class="agenda-section-label">Tus datos de contacto</p>
+          <form class="agenda-form-datos" onsubmit="confirmarAgenda(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Nombre</label>
+                <input class="form-input" type="text" placeholder="Tu nombre completo" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">WhatsApp</label>
+                <input class="form-input" type="tel" placeholder="+56 9 XXXX XXXX" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email (opcional)</label>
+              <input class="form-input" type="email" placeholder="tu@correo.com">
+            </div>
+            <div class="paso-btns">
+              <button type="button" class="btn-volver" onclick="irPaso(3)">← Volver</button>
+              <button type="submit" class="btn-primary">Confirmar hora →</button>
+            </div>
+            <p class="agenda-nota">Te contactamos por WhatsApp para confirmar la reserva.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONFIRMACION -->
+    <div class="agenda-panel" id="panelConfirmacion" style="display:none">
+      <div class="agenda-confirmacion">
+        <div class="confirmacion-icono">🎉</div>
+        <h3 class="confirmacion-titulo">¡Hora solicitada!</h3>
+        <p class="confirmacion-desc">Te contactaremos por WhatsApp en menos de 1 hora para confirmar tu cita.</p>
+        <div class="confirmacion-resumen" id="confirmacionResumen"></div>
+        <button class="btn-primary full" onclick="cerrarAgenda()">Listo</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  <!-- MODAL LOGIN -->
+  <div class="modal-bg" id="modalLoginBg" onclick="cerrarLogin()">
+    <div class="modal modal-auth" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="cerrarLogin()">✕</button>
+
+      <div class="auth-tabs">
+        <button class="auth-tab activo" id="tabLogin" onclick="switchTab('login')">Iniciar sesión</button>
+        <button class="auth-tab" id="tabRegister" onclick="switchTab('register')">Crear cuenta</button>
+      </div>
+
+      <div id="panelLogin">
+        <div class="modal-icon">👤</div>
+        <h3 class="modal-titulo">Bienvenido de vuelta</h3>
+        <p class="modal-desc">Accede a tu historial de citas y más.</p>
+        <form class="booking-form" onsubmit="return false;">
+          <input class="form-input" type="email" placeholder="Correo electrónico" required>
+          <input class="form-input" type="password" placeholder="Contraseña" required>
+          <button type="submit" class="btn-primary full">Ingresar</button>
+          <p style="text-align:center; font-size:13px; color:var(--muted);">¿Olvidaste tu contraseña? <a href="#" style="color:var(--brand);">Recuperar</a></p>
+        </form>
+      </div>
+
+      <div id="panelRegister" style="display:none;">
+        <div class="modal-icon">✨</div>
+        <h3 class="modal-titulo">Crea tu cuenta</h3>
+        <p class="modal-desc">Guarda tu historial de citas y agenda más rápido.</p>
+        <form class="booking-form" onsubmit="return false;">
+          <div class="form-row">
+            <input class="form-input" type="text" placeholder="Nombre" required>
+            <input class="form-input" type="text" placeholder="Apellido" required>
+          </div>
+          <input class="form-input" type="email" placeholder="Correo electrónico" required>
+          <input class="form-input" type="tel" placeholder="WhatsApp" required>
+          <input class="form-input" type="password" placeholder="Contraseña" required>
+          <button type="submit" class="btn-primary full">Crear cuenta</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WHATSAPP -->
+  <div class="wa-bar">
+    <div class="wa-text">
+      <strong>¿Prefieres escribir directo?</strong>
+      <span>Respondemos por WhatsApp en minutos, incluso fuera del horario habitual</span>
+    </div>
+    <a href="https://wa.me/56946819850" class="wa-btn" target="_blank">Escribir por WhatsApp →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <strong>Sonrisas.</strong> — Centro Dental · Providencia, Santiago · 9 4681 9850<br>
+    <span>Lunes a Viernes 9:00 - 19:00 · Sábado 9:00 - 14:00</span>
+  </footer>
+
+  <script>
+  const servicios = {
+    blanqueamiento:{icono:'✨',titulo:'Blanqueamiento dental',desc:'El blanqueamiento dental aclara el color natural de los dientes eliminando manchas causadas por café, té, tabaco o el paso del tiempo.',puntos:['Resultados visibles desde la primera sesión','Tratamiento seguro y sin dañar el esmalte','Duración de 1 a 3 años','Apto para dientes sensibles']},
+    carillas:{icono:'💎',titulo:'Carillas y coronas',desc:'Láminas de porcelana que corrigen forma, color o tamaño del diente.',puntos:['Corrección de dientes rotos o manchados','Porcelana de alta resistencia','Resultado natural','Mínimamente invasivo']},
+    cirugia:{icono:'🔬',titulo:'Cirugía oral',desc:'Incluye extracción de muelas del juicio y otras intervenciones con anestesia local.',puntos:['Extracción de muelas del juicio','Sin dolor bajo anestesia','Recuperación guiada','Indicaciones detalladas']},
+    implantes:{icono:'🦷',titulo:'Implantes dentales',desc:'Raíz artificial de titanio para reemplazar un diente perdido de forma definitiva.',puntos:['Solución permanente','Funciona como diente natural','No afecta dientes vecinos','Seguimiento continuo']},
+    ortodoncia:{icono:'😁',titulo:'Ortodoncia',desc:'Corrección de la posición de dientes mediante brackets o alineadores.',puntos:['Brackets o alineadores transparentes','Control mensual incluido','Resultados desde 12 meses','Para niños y adultos']},
+    odontopediatria:{icono:'👶',titulo:'Odontopediatría',desc:'Atención especializada para niños desde los primeros dientes.',puntos:['Desde los 12 meses','Ambiente sin miedo','Sellantes y flúor','Educación a los padres']},
+    endodoncia:{icono:'🩺',titulo:'Endodoncia',desc:'Salva un diente infectado eliminando el nervio dañado.',puntos:['Sin dolor','Alternativa a la extracción','Una o dos sesiones','Dura décadas']},
+    periodoncia:{icono:'🌿',titulo:'Periodoncia',desc:'Trata enfermedades de encías y el hueso de soporte.',puntos:['Gingivitis y periodontitis','Limpieza profunda','Cirugía si es necesario','Mantención periódica']},
+    bichectomia:{icono:'✂️',titulo:'Bichectomía',desc:'Reduce las bolsas de Bichat para un rostro más definido.',puntos:['30 a 45 minutos','Sin hospitalización','Recuperación 5 a 7 días','Resultados definitivos']},
+    estetica:{icono:'⭐',titulo:'Odontología estética',desc:'Diseño de sonrisa personalizado integrando varios tratamientos.',puntos:['Simulación digital','Plan personalizado','Combinación de tratamientos','Resultado armonioso']}
+  }
+
+  const profsPorEsp = {
+    'Blanqueamiento dental': ['Dra. Valentina Pérez'],
+    'Carillas y coronas': ['Dra. Valentina Pérez'],
+    'Cirugía oral': ['Dr. Roberto Mora'],
+    'Implantes dentales': ['Dr. Roberto Mora'],
+    'Ortodoncia': ['Dra. Camila Araya'],
+    'Odontopediatría': ['Dra. Camila Araya'],
+    'Endodoncia': ['Dr. Roberto Mora'],
+    'Periodoncia': ['Dr. Matías Soto'],
+    'Bichectomía': ['Dr. Matías Soto'],
+    'Odontología estética': ['Dra. Valentina Pérez','Dr. Matías Soto']
+  }
+
+  const profData = {
+  'Dr. Roberto Mora': {
+    esp: 'Implantología y Cirugía Oral',
+    filtro: '',
+    dias: 'Lunes a Viernes',
+    horario: '09:00 – 18:00',
+    duracion: 'Consulta de 45 min'
+  },
+  'Dra. Camila Araya': {
+    esp: 'Ortodoncista',
+    filtro: 'azul',
+    dias: 'Lunes, Miércoles y Viernes',
+    horario: '10:00 – 19:00',
+    duracion: 'Consulta de 30 min'
+  },
+  'Dra. Valentina Pérez': {
+    esp: 'Odontología Estética',
+    filtro: 'naranja',
+    dias: 'Martes a Sábado',
+    horario: '09:00 – 17:00',
+    duracion: 'Consulta de 60 min'
+  },
+  'Dr. Matías Soto': {
+    esp: 'Periodoncia y Bichectomía',
+    filtro: 'verde',
+    dias: 'Lunes a Jueves',
+    horario: '08:00 – 16:00',
+    duracion: 'Consulta de 45 min'
+  }
+}
+
+  const horariosBase = ['09:00','09:30','10:00','10:30','11:00','11:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00']
+  const diasSemana = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb']
+  const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
+
+  let semanaOffset = 0
+  let fechaSeleccionada = null
+  let horarioSeleccionado = null
+  let espSeleccionada = null
+  let sucursalSeleccionada = 'Sonrisas Providencia'
+  let profSeleccionado = null
+  let pasoActual = 1
+
+  function irPaso(n) {
+    if (n === 2 && !espSeleccionada) { alert('Selecciona una especialidad primero.'); return }
+    if (n === 3 && !profSeleccionado) { alert('Selecciona un profesional.'); return }
+    if (n === 4 && (!fechaSeleccionada || !horarioSeleccionado)) { alert('Selecciona fecha y horario.'); return }
+
+    document.querySelectorAll('.agenda-panel').forEach(p => p.style.display = 'none')
+    document.querySelectorAll('.paso-dot').forEach((d,i) => {
+      d.classList.toggle('activo', i < n)
+      d.classList.toggle('completo', i < n - 1)
+    })
+
+    if (n === 2) renderProfesionales()
+    if (n === 3) { renderCalendario(); renderBannerProf() }
+    if (n === 4) renderResumenCita()
+
+    const paneles = { 1:'panel1', 2:'panel2', 3:'panel3', 4:'panel4' }
+    document.getElementById(paneles[n]).style.display = 'block'
+
+    const titulos = {
+      1: ['Agenda tu hora', 'Selecciona especialidad y sucursal.'],
+      2: ['Elige tu profesional', 'Especialistas disponibles para tu consulta.'],
+      3: ['Selecciona fecha y hora', 'Elige el día y horario que prefieras.'],
+      4: ['Confirma tu reserva', 'Solo falta tu información de contacto.']
+    }
+    document.getElementById('agendaTitulo').textContent = titulos[n][0]
+    document.getElementById('agendaSub').textContent = titulos[n][1]
+    pasoActual = n
+  }
+
+  function seleccionarEsp(el, nombre) {
+    document.querySelectorAll('.esp-item').forEach(e => e.classList.remove('activo'))
+    el.classList.add('activo')
+    espSeleccionada = nombre
+    profSeleccionado = null
+    fechaSeleccionada = null
+    horarioSeleccionado = null
+    document.getElementById('espSelLabel').textContent = nombre
+  }
+
+  function seleccionarSucursal(el, nombre) {
+    document.querySelectorAll('.sucursal-item').forEach(e => e.classList.remove('activo'))
+    el.classList.add('activo')
+    sucursalSeleccionada = nombre
+  }
+
+  function renderProfesionales() {
+  const profs = profsPorEsp[espSeleccionada] || []
+  const cont = document.getElementById('profesionalesList')
+  cont.innerHTML = ''
+  profs.forEach(nombre => {
+    const d = profData[nombre]
+    const div = document.createElement('div')
+    div.className = 'prof-item'
+    div.onclick = () => {
+      document.querySelectorAll('.prof-item').forEach(p => p.classList.remove('activo'))
+      div.classList.add('activo')
+      profSeleccionado = nombre
+    }
+    div.innerHTML = `
+      <div class="prof-foto ${d.filtro}"><img src="img/Dentista-para-profesionales.jpg" alt="${nombre}"></div>
+      <div class="prof-info">
+        <p class="prof-nombre">${nombre}</p>
+        <p class="prof-esp">${d.esp}</p>
+        <div class="prof-disponibilidad">
+          <div class="disp-fila">
+            <span class="disp-icono">📅</span>
+            <span class="disp-texto">${d.dias}</span>
+          </div>
+          <div class="disp-fila">
+            <span class="disp-icono">🕘</span>
+            <span class="disp-texto">${d.horario}</span>
+          </div>
+          <div class="disp-fila">
+            <span class="disp-icono">⏱</span>
+            <span class="disp-texto">${d.duracion}</span>
+          </div>
+        </div>
+      </div>
+      <div class="prof-check">✓</div>
+    `
+    cont.appendChild(div)
+  })
+}
+
+  function renderBannerProf() {
+    const d = profData[profSeleccionado]
+    document.getElementById('profBanner').innerHTML = `
+      <div class="banner-prof-foto ${d.filtro}">
+        <img src="img/Dentista-para-profesionales.jpg" alt="${profSeleccionado}">
+      </div>
+      <div class="banner-prof-info">
+        <p class="banner-prof-nombre">${profSeleccionado}</p>
+        <p class="banner-prof-esp">${d.esp}</p>
+        <p class="banner-prof-sucursal">🏥 ${sucursalSeleccionada}</p>
+      </div>
+    `
+  }
+
+  function getLunes(offset) {
+    const hoy = new Date()
+    const dia = hoy.getDay()
+    const diff = dia === 0 ? -6 : 1 - dia
+    const lunes = new Date(hoy)
+    lunes.setDate(hoy.getDate() + diff + offset * 7)
+    lunes.setHours(0,0,0,0)
+    return lunes
+  }
+
+  function renderCalendario() {
+    const lunes = getLunes(semanaOffset)
+    const domingo = new Date(lunes); domingo.setDate(lunes.getDate() + 6)
+    document.getElementById('calLabel').textContent =
+      `Semana del ${lunes.getDate()} al ${domingo.getDate()} de ${meses[domingo.getMonth()]}`
+    const cont = document.getElementById('calDias')
+    cont.innerHTML = ''
+    const hoy = new Date(); hoy.setHours(0,0,0,0)
+    for (let i = 0; i < 7; i++) {
+      const d = new Date(lunes); d.setDate(lunes.getDate() + i)
+      const esDomingo = d.getDay() === 0
+      const esPasado = d < hoy
+      const esHoy = d.getTime() === hoy.getTime()
+      const esSeleccionado = fechaSeleccionada && d.getTime() === fechaSeleccionada.getTime()
+      const btn = document.createElement('button')
+      btn.className = 'cal-dia' +
+        (esDomingo||esPasado?' deshabilitado':'') +
+        (esHoy?' hoy':'') +
+        (esSeleccionado?' seleccionado':'')
+      btn.innerHTML = `<span class="cal-dia-nombre">${diasSemana[d.getDay()]}</span><span class="cal-dia-num">${d.getDate()}</span>`
+      if (!esDomingo && !esPasado) btn.onclick = () => seleccionarFecha(d, btn)
+      cont.appendChild(btn)
+    }
+  }
+
+  function seleccionarFecha(fecha, btn) {
+    document.querySelectorAll('.cal-dia').forEach(b => b.classList.remove('seleccionado'))
+    btn.classList.add('seleccionado')
+    fechaSeleccionada = fecha
+    horarioSeleccionado = null
+    document.getElementById('fechaSelLabel').textContent =
+      `${diasSemana[fecha.getDay()]} ${fecha.getDate()} de ${meses[fecha.getMonth()]}`
+    document.getElementById('horariosStep').style.display = 'block'
+    renderHorarios()
+  }
+
+  function renderHorarios() {
+  const cont = document.getElementById('horariosGrid')
+  cont.innerHTML = ''
+  const ocupados = [2, 5, 8, 11]
+  const ahora = new Date()
+  const esHoy = fechaSeleccionada &&
+    fechaSeleccionada.getDate() === ahora.getDate() &&
+    fechaSeleccionada.getMonth() === ahora.getMonth() &&
+    fechaSeleccionada.getFullYear() === ahora.getFullYear()
+
+  horariosBase.forEach((h, i) => {
+    const [hh, mm] = h.split(':').map(Number)
+    const horarioDate = new Date(ahora)
+    horarioDate.setHours(hh, mm, 0, 0)
+    const yaPaso = esHoy && horarioDate <= ahora
+    const ocupado = ocupados.includes(i)
+    const bloqueado = ocupado || yaPaso
+
+    const btn = document.createElement('button')
+    btn.className = 'horario-btn' + (ocupado ? ' ocupado' : '') + (yaPaso && !ocupado ? ' pasado' : '')
+    btn.textContent = h
+    btn.disabled = bloqueado
+    btn.title = yaPaso && !ocupado ? 'Horario no disponible para hoy' : ''
+
+    if (!bloqueado) {
+      btn.onclick = () => {
+        document.querySelectorAll('.horario-btn').forEach(b => b.classList.remove('seleccionado'))
+        btn.classList.add('seleccionado')
+        horarioSeleccionado = h
+      }
+    }
+    cont.appendChild(btn)
+  })
+}
+
+  function cambiarSemana(dir) {
+    semanaOffset = Math.max(0, semanaOffset + dir)
+    renderCalendario()
+  }
+
+  function renderResumenCita() {
+    const d = profData[profSeleccionado]
+    document.getElementById('resumenCita').innerHTML = `
+      <div class="resumen-cita-inner">
+        <p class="resumen-titulo">Resumen de tu cita</p>
+        <div class="res-fila"><span>Especialidad</span><strong>${espSeleccionada}</strong></div>
+        <div class="res-fila"><span>Sucursal</span><strong>${sucursalSeleccionada}</strong></div>
+        <div class="res-fila"><span>Profesional</span><strong>${profSeleccionado}</strong></div>
+        <div class="res-fila"><span>Fecha</span><strong>${diasSemana[fechaSeleccionada.getDay()]} ${fechaSeleccionada.getDate()} de ${meses[fechaSeleccionada.getMonth()]}</strong></div>
+        <div class="res-fila res-fila-hora"><span>Horario</span><strong class="hora-badge">${horarioSeleccionado}</strong></div>
+      </div>
+    `
+  }
+
+  function confirmarAgenda(e) {
+    e.preventDefault()
+    const d = profData[profSeleccionado]
+    document.getElementById('confirmacionResumen').innerHTML = `
+      <div class="res-fila"><span>Especialidad</span><strong>${espSeleccionada}</strong></div>
+      <div class="res-fila"><span>Profesional</span><strong>${profSeleccionado}</strong></div>
+      <div class="res-fila"><span>Sucursal</span><strong>${sucursalSeleccionada}</strong></div>
+      <div class="res-fila"><span>Fecha</span><strong>${diasSemana[fechaSeleccionada.getDay()]} ${fechaSeleccionada.getDate()} de ${meses[fechaSeleccionada.getMonth()]}</strong></div>
+      <div class="res-fila"><span>Horario</span><strong>${horarioSeleccionado}</strong></div>
+    `
+    document.querySelectorAll('.agenda-panel').forEach(p => p.style.display = 'none')
+    document.getElementById('panelConfirmacion').style.display = 'block'
+  }
+
+  function abrirServicio(id) {
+    const s = servicios[id]
+    document.getElementById('modalIcono').textContent = s.icono
+    document.getElementById('modalTitulo').textContent = s.titulo
+    document.getElementById('modalDesc').textContent = s.desc
+    document.getElementById('modalLista').innerHTML = s.puntos.map(p=>`<li>${p}</li>`).join('')
+    document.getElementById('modalServicioBg').classList.add('activo')
+    document.body.style.overflow = 'hidden'
+  }
+  function cerrarServicio() {
+    document.getElementById('modalServicioBg').classList.remove('activo')
+    document.body.style.overflow = ''
+  }
+  function abrirAgenda() {
+    semanaOffset = 0; fechaSeleccionada = null; horarioSeleccionado = null
+    espSeleccionada = null; profSeleccionado = null; sucursalSeleccionada = 'Sonrisas Providencia'
+    document.querySelectorAll('.agenda-panel').forEach(p => p.style.display = 'none')
+    document.getElementById('panel1').style.display = 'block'
+    document.querySelectorAll('.esp-item').forEach(e => e.classList.remove('activo'))
+    document.querySelectorAll('.paso-dot').forEach((d,i) => { d.classList.toggle('activo', i===0); d.classList.remove('completo') })
+    document.getElementById('agendaTitulo').textContent = 'Agenda tu hora'
+    document.getElementById('agendaSub').textContent = 'Completa los pasos para encontrar el horario ideal.'
+    document.getElementById('horariosStep').style.display = 'none'
+    document.getElementById('modalAgendaBg').classList.add('activo')
+    document.body.style.overflow = 'hidden'
+  }
+  function cerrarAgenda() {
+    document.getElementById('modalAgendaBg').classList.remove('activo')
+    document.body.style.overflow = ''
+  }
+  function abrirLogin() {
+    document.getElementById('modalLoginBg').classList.add('activo')
+    document.body.style.overflow = 'hidden'
+  }
+  function cerrarLogin() {
+    document.getElementById('modalLoginBg').classList.remove('activo')
+    document.body.style.overflow = ''
+  }
+  function switchTab(tab) {
+    document.getElementById('panelLogin').style.display = tab==='login'?'block':'none'
+    document.getElementById('panelRegister').style.display = tab==='register'?'block':'none'
+    document.getElementById('tabLogin').classList.toggle('activo', tab==='login')
+    document.getElementById('tabRegister').classList.toggle('activo', tab==='register')
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key==='Escape') { cerrarServicio(); cerrarAgenda(); cerrarLogin() }
+  })
+</script>   
+
+</body>
+</html>
