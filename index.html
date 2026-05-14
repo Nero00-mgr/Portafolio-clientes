@@ -746,6 +746,10 @@
     document.body.style.overflow = ''
   }
   function abrirAgenda() {
+  if (window.innerWidth <= 768) {
+    abrirAgendaMovil()
+    return
+  }
   semanaOffset = 0; fechaSeleccionada = null; horarioSeleccionado = null
   espSeleccionada = null; profSeleccionado = null
   sucursalSeleccionada = 'Sonrisas Providencia'
@@ -760,7 +764,7 @@
   document.getElementById('agendaSub').textContent = 'Completa los pasos para encontrar el horario ideal.'
   document.getElementById('horariosStep').style.display = 'none'
   document.getElementById('modalAgendaBg').classList.add('activo')
-  document.body.classList.add('modal-abierto')
+  document.body.style.overflow = 'hidden'
 }
 
 function cerrarAgenda() {
@@ -785,7 +789,316 @@ function cerrarLogin() {
   document.addEventListener('keydown', e => {
     if (e.key==='Escape') { cerrarServicio(); cerrarAgenda(); cerrarLogin() }
   })
+
+  // AGENDADOR MOVIL
+let amPaso = 1, amEsp = null, amSuc = 'Sonrisas Providencia'
+let amProf = null, amFecha = null, amHorario = null, amSemana = 0
+
+function abrirAgendaMovil() {
+  amPaso = 1; amEsp = null; amProf = null
+  amFecha = null; amHorario = null; amSemana = 0
+  amSuc = 'Sonrisas Providencia'
+  document.querySelectorAll('#agendaMovil .esp-item').forEach(e => e.classList.remove('activo'))
+  document.querySelectorAll('#agendaMovil .sucursal-item').forEach(e => e.classList.remove('activo'))
+  document.querySelector('#agendaMovil .sucursal-item').classList.add('activo')
+  document.getElementById('amHorariosStep').style.display = 'none'
+  amMostrarPanel(1)
+  document.getElementById('agendaMovil').classList.add('activo')
+  document.body.style.overflow = 'hidden'
+}
+
+function cerrarAgendaMovil() {
+  document.getElementById('agendaMovil').classList.remove('activo')
+  document.body.style.overflow = ''
+}
+
+function amMostrarPanel(n) {
+  ['amPanel1','amPanel2','amPanel3','amPanel4','amConfirmacion'].forEach(id => {
+    document.getElementById(id).style.display = 'none'
+  })
+  const mapa = {1:'amPanel1',2:'amPanel2',3:'amPanel3',4:'amPanel4'}
+  if (mapa[n]) document.getElementById(mapa[n]).style.display = 'flex'
+  const titulos = {1:'Agendar hora',2:'Elige profesional',3:'Fecha y hora',4:'Tus datos'}
+  document.getElementById('amTitulo').textContent = titulos[n] || 'Agendar hora'
+  document.getElementById('amBarra').style.width = (n * 25) + '%'
+  document.getElementById('amSub').textContent = `Paso ${n} de 4`
+  document.getElementById('amVolver').style.visibility = n > 1 ? 'visible' : 'hidden'
+  amPaso = n
+}
+
+function amVolver() { if (amPaso > 1) amMostrarPanel(amPaso - 1) }
+
+function amSelEsp(el, nombre) {
+  document.querySelectorAll('#agendaMovil .esp-item').forEach(e => e.classList.remove('activo'))
+  el.classList.add('activo')
+  amEsp = nombre
+  document.getElementById('amEspLabel').textContent = nombre
+}
+
+function amSelSuc(el, nombre) {
+  document.querySelectorAll('#agendaMovil .sucursal-item').forEach(e => e.classList.remove('activo'))
+  el.classList.add('activo')
+  amSuc = nombre
+}
+
+function amIrPaso(n) {
+  if (n === 2 && !amEsp) { alert('Selecciona un tipo de consulta.'); return }
+  if (n === 3 && !amProf) { alert('Selecciona un profesional.'); return }
+  if (n === 4 && (!amFecha || !amHorario)) { alert('Selecciona fecha y horario.'); return }
+  if (n === 2) amRenderProfs()
+  if (n === 3) { amRenderCal(); amRenderBannerProf() }
+  if (n === 4) amRenderResumen()
+  amMostrarPanel(n)
+}
+
+function amRenderProfs() {
+  const profs = profsPorEsp[amEsp] || []
+  const cont = document.getElementById('amProfList')
+  cont.innerHTML = ''
+  profs.forEach(nombre => {
+    const d = profData[nombre]
+    const div = document.createElement('div')
+    div.className = 'prof-item'
+    div.onclick = () => {
+      document.querySelectorAll('#amProfList .prof-item').forEach(p => p.classList.remove('activo'))
+      div.classList.add('activo')
+      amProf = nombre
+    }
+    div.innerHTML = `
+      <div class="prof-foto ${d.filtro}">
+        <img src="img/Dentista-para-profesionales.jpg" alt="${nombre}">
+      </div>
+      <div class="prof-info">
+        <p class="prof-nombre">${nombre}</p>
+        <p class="prof-esp">${d.esp}</p>
+        <div class="prof-disponibilidad">
+          <div class="disp-fila"><span class="disp-icono">📅</span><span class="disp-texto">${d.dias}</span></div>
+          <div class="disp-fila"><span class="disp-icono">🕘</span><span class="disp-texto">${d.horario}</span></div>
+          <div class="disp-fila"><span class="disp-icono">⏱</span><span class="disp-texto">${d.duracion}</span></div>
+        </div>
+      </div>
+      <div class="prof-check">✓</div>
+    `
+    cont.appendChild(div)
+  })
+}
+
+function amRenderBannerProf() {
+  const d = profData[amProf]
+  document.getElementById('amProfBanner').innerHTML = `
+    <div class="banner-prof-foto ${d.filtro}">
+      <img src="img/Dentista-para-profesionales.jpg" alt="${amProf}">
+    </div>
+    <div class="banner-prof-info">
+      <p class="banner-prof-nombre">${amProf}</p>
+      <p class="banner-prof-esp">${d.esp}</p>
+      <p class="banner-prof-sucursal">🏥 ${amSuc}</p>
+    </div>
+  `
+}
+
+function amRenderCal() {
+  const lunes = getLunes(amSemana)
+  const dom = new Date(lunes); dom.setDate(lunes.getDate() + 6)
+  document.getElementById('amCalLabel').textContent =
+    `${lunes.getDate()} al ${dom.getDate()} de ${meses[dom.getMonth()]}`
+  const cont = document.getElementById('amCalDias')
+  cont.innerHTML = ''
+  const hoy = new Date(); hoy.setHours(0,0,0,0)
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(lunes); d.setDate(lunes.getDate() + i)
+    const esDom = d.getDay() === 0
+    const esPas = d < hoy
+    const esHoy = d.getTime() === hoy.getTime()
+    const esSel = amFecha && d.getTime() === amFecha.getTime()
+    const btn = document.createElement('button')
+    btn.className = 'cal-dia' +
+      (esDom||esPas?' deshabilitado':'') +
+      (esHoy?' hoy':'') +
+      (esSel?' seleccionado':'')
+    btn.innerHTML = `<span class="cal-dia-nombre">${diasSemana[d.getDay()]}</span><span class="cal-dia-num">${d.getDate()}</span>`
+    if (!esDom && !esPas) btn.onclick = () => amSelFecha(d, btn)
+    cont.appendChild(btn)
+  }
+}
+
+function amSelFecha(fecha, btn) {
+  document.querySelectorAll('#amCalDias .cal-dia').forEach(b => b.classList.remove('seleccionado'))
+  btn.classList.add('seleccionado')
+  amFecha = fecha
+  amHorario = null
+  document.getElementById('amFechaLabel').textContent =
+    `${diasSemana[fecha.getDay()]} ${fecha.getDate()} de ${meses[fecha.getMonth()]}`
+  document.getElementById('amHorariosStep').style.display = 'block'
+  amRenderHorarios()
+}
+
+function amRenderHorarios() {
+  const cont = document.getElementById('amHorariosGrid')
+  cont.innerHTML = ''
+  const ocupados = [2,5,8,11]
+  const ahora = new Date()
+  const esHoy = amFecha &&
+    amFecha.getDate() === ahora.getDate() &&
+    amFecha.getMonth() === ahora.getMonth() &&
+    amFecha.getFullYear() === ahora.getFullYear()
+  horariosBase.forEach((h, i) => {
+    const [hh, mm] = h.split(':').map(Number)
+    const hDate = new Date(ahora); hDate.setHours(hh, mm, 0, 0)
+    const yaPaso = esHoy && hDate <= ahora
+    const ocupado = ocupados.includes(i)
+    const btn = document.createElement('button')
+    btn.className = 'horario-btn' +
+      (ocupado?' ocupado':'') +
+      (yaPaso&&!ocupado?' pasado':'')
+    btn.textContent = h
+    btn.disabled = ocupado || yaPaso
+    if (!ocupado && !yaPaso) btn.onclick = () => {
+      document.querySelectorAll('#amHorariosGrid .horario-btn').forEach(b => b.classList.remove('seleccionado'))
+      btn.classList.add('seleccionado')
+      amHorario = h
+    }
+    cont.appendChild(btn)
+  })
+}
+
+function amCambiarSemana(dir) {
+  amSemana = Math.max(0, amSemana + dir)
+  amRenderCal()
+}
+
+function amRenderResumen() {
+  document.getElementById('amResumen').innerHTML = `
+    <div class="resumen-cita-inner">
+      <p class="resumen-titulo">Resumen de tu cita</p>
+      <div class="res-fila"><span>Especialidad</span><strong>${amEsp}</strong></div>
+      <div class="res-fila"><span>Sucursal</span><strong>${amSuc}</strong></div>
+      <div class="res-fila"><span>Profesional</span><strong>${amProf}</strong></div>
+      <div class="res-fila"><span>Fecha</span><strong>${diasSemana[amFecha.getDay()]} ${amFecha.getDate()} de ${meses[amFecha.getMonth()]}</strong></div>
+      <div class="res-fila"><span>Horario</span><strong class="hora-badge">${amHorario}</strong></div>
+    </div>
+  `
+}
+
+function amConfirmar(e) {
+  e.preventDefault()
+  document.getElementById('amResumenFinal').innerHTML = `
+    <div class="res-fila"><span>Especialidad</span><strong>${amEsp}</strong></div>
+    <div class="res-fila"><span>Profesional</span><strong>${amProf}</strong></div>
+    <div class="res-fila"><span>Fecha</span><strong>${diasSemana[amFecha.getDay()]} ${amFecha.getDate()} de ${meses[amFecha.getMonth()]}</strong></div>
+    <div class="res-fila"><span>Horario</span><strong>${amHorario}</strong></div>
+  `
+  ['amPanel1','amPanel2','amPanel3','amPanel4'].forEach(id => {
+    document.getElementById(id).style.display = 'none'
+  })
+  document.getElementById('amConfirmacion').style.display = 'flex'
+  document.getElementById('amBarra').style.width = '100%'
+  document.getElementById('amSub').textContent = '¡Listo!'
+  document.getElementById('amVolver').style.visibility = 'hidden'
+}
+
+
+
 </script>   
+
+<!-- AGENDADOR MOVIL -->
+<div class="agenda-movil" id="agendaMovil">
+
+  <div class="am-header">
+    <div class="am-header-izq">
+      <button class="am-volver" id="amVolver" onclick="amVolver()">←</button>
+      <span class="am-titulo" id="amTitulo">Agendar hora</span>
+    </div>
+    <button class="am-cerrar" onclick="cerrarAgendaMovil()">✕</button>
+  </div>
+
+  <div class="am-progreso">
+    <div class="am-barra"><div class="am-barra-fill" id="amBarra" style="width:25%"></div></div>
+    <p class="am-sub" id="amSub">Paso 1 de 4</p>
+  </div>
+
+  <div class="am-contenido" id="amPanel1">
+    <p class="am-label">¿Qué tipo de consulta buscas?</p>
+    <div class="am-esp-grid">
+      <div class="esp-item" onclick="amSelEsp(this,'Blanqueamiento dental')"><span>✨</span>Blanqueamiento</div>
+      <div class="esp-item" onclick="amSelEsp(this,'Carillas y coronas')"><span>💎</span>Carillas</div>
+      <div class="esp-item" onclick="amSelEsp(this,'Cirugía oral')"><span>🔬</span>Cirugía oral</div>
+      <div class="esp-item" onclick="amSelEsp(this,'Implantes dentales')"><span>🦷</span>Implantes</div>
+      <div class="esp-item" onclick="amSelEsp(this,'Ortodoncia')"><span>😁</span>Ortodoncia</div>
+      <div class="esp-item" onclick="amSelEsp(this,'Odontopediatría')"><span>👶</span>Infantil</div>
+      <div class="esp-item" onclick="amSelEsp(this,'Endodoncia')"><span>🩺</span>Endodoncia</div>
+      <div class="esp-item" onclick="amSelEsp(this,'Periodoncia')"><span>🌿</span>Periodoncia</div>
+      <div class="esp-item" onclick="amSelEsp(this,'Bichectomía')"><span>✂️</span>Bichectomía</div>
+      <div class="esp-item" onclick="amSelEsp(this,'Odontología estética')"><span>⭐</span>Estética</div>
+    </div>
+    <p class="am-label">¿En qué sucursal?</p>
+    <div class="sucursales-lista">
+      <div class="sucursal-item activo" onclick="amSelSuc(this,'Sonrisas Providencia')">
+        <div class="sucursal-icono">🏥</div>
+        <div class="sucursal-info"><p class="sucursal-nombre">Sonrisas Providencia</p><p class="sucursal-dir">San Pío X 2445, oficina 702</p></div>
+        <div class="prof-check">✓</div>
+      </div>
+      <div class="sucursal-item" onclick="amSelSuc(this,'Sonrisas Las Condes')">
+        <div class="sucursal-icono">🏥</div>
+        <div class="sucursal-info"><p class="sucursal-nombre">Sonrisas Las Condes</p><p class="sucursal-dir">Av. Apoquindo 4501</p></div>
+        <div class="prof-check">✓</div>
+      </div>
+    </div>
+    <button class="am-btn-sig" onclick="amIrPaso(2)">Siguiente →</button>
+  </div>
+
+  <div class="am-contenido" id="amPanel2" style="display:none">
+    <p class="am-label">Especialistas para <span id="amEspLabel" style="color:var(--brand)"></span></p>
+    <div class="profesionales-lista" id="amProfList"></div>
+    <button class="am-btn-sig" onclick="amIrPaso(3)">Siguiente →</button>
+  </div>
+
+  <div class="am-contenido" id="amPanel3" style="display:none">
+    <div class="prof-seleccionado-banner" id="amProfBanner"></div>
+    <p class="am-label">Selecciona una fecha</p>
+    <div class="cal-nav">
+      <button class="cal-nav-btn" onclick="amCambiarSemana(-1)">‹</button>
+      <span class="cal-semana-label" id="amCalLabel"></span>
+      <button class="cal-nav-btn" onclick="amCambiarSemana(1)">›</button>
+    </div>
+    <div class="cal-dias" id="amCalDias"></div>
+    <div id="amHorariosStep" style="display:none">
+      <p class="am-label" style="margin-top:1rem">Horarios — <span id="amFechaLabel" style="color:var(--brand);font-weight:500"></span></p>
+      <div class="horarios-grid" id="amHorariosGrid"></div>
+    </div>
+    <button class="am-btn-sig" onclick="amIrPaso(4)">Siguiente →</button>
+  </div>
+
+  <div class="am-contenido" id="amPanel4" style="display:none">
+    <div class="resumen-cita" id="amResumen"></div>
+    <p class="am-label">Tus datos</p>
+    <form onsubmit="amConfirmar(event)" style="display:flex;flex-direction:column;gap:12px;">
+      <div class="form-group">
+        <label class="form-label">Nombre completo</label>
+        <input class="form-input" type="text" placeholder="Tu nombre" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">WhatsApp</label>
+        <input class="form-input" type="tel" placeholder="+56 9 XXXX XXXX" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email (opcional)</label>
+        <input class="form-input" type="email" placeholder="tu@correo.com">
+      </div>
+      <p class="agenda-nota">Te contactamos por WhatsApp para confirmar.</p>
+      <button type="submit" class="am-btn-sig">Confirmar hora →</button>
+    </form>
+  </div>
+
+  <div class="am-contenido" id="amConfirmacion" style="display:none; text-align:center;">
+    <div style="font-size:60px; margin-bottom:1rem;">🎉</div>
+    <h3 style="font-family:'Fraunces',serif; font-size:24px; color:var(--dark); margin-bottom:0.5rem;">¡Hora solicitada!</h3>
+    <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:1.5rem;">Te contactaremos por WhatsApp en menos de 1 hora para confirmar tu cita.</p>
+    <div class="confirmacion-resumen" id="amResumenFinal"></div>
+    <button class="am-btn-sig" onclick="cerrarAgendaMovil()" style="margin-top:1rem;">Listo</button>
+  </div>
+
+</div>
 
 </body>
 </html>
