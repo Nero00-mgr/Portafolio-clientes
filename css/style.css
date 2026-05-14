@@ -503,134 +503,151 @@ body.modal-abierto {
   .equipo-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
 
-  /* CONTACTO MOVIL */
-  .contacto-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: #eee;
-    border: 1px solid #eee;
-  }
-  .contacto-card {
-    background: var(--white);
-    padding: 1rem;
-    align-items: center;
-    text-align: center;
-  }
-  .contacto-valor {
-    font-size: 12px;
-    word-break: break-word;
-  }
-  .contacto-valor.link {
-    font-size: 12px;
-  }
+  /* CONTACTO */
+  .contacto-grid { grid-template-columns: repeat(2, 1fr); gap: 1px; background: #eee; border: 1px solid #eee; }
+  .contacto-card { background: var(--white); padding: 1rem; align-items: center; text-align: center; }
+  .contacto-valor { font-size: 12px; word-break: break-word; }
+  .contacto-valor.link { font-size: 12px; }
 
-  /* IMAGENES SIN CORTE */
-  .banner-img img {
-    object-fit: cover;
-    will-change: auto;
-  }
-  .equipo-foto img {
-    will-change: auto;
-  }
+  /* MODAL PANTALLA COMPLETA EN MOVIL */
+  .modal-bg { padding: 0; align-items: flex-start; }
 
-  /* MODAL DESDE ABAJO */
-  .modal-bg {
-    padding: 0;
-    align-items: flex-end;
-    backdrop-filter: none;
-  }
   .modal {
-    border-radius: 20px 20px 0 0;
-    max-height: 88vh;
+    border-radius: 0;
+    max-height: 100vh;
+    height: 100vh;
     width: 100%;
-    padding: 1.5rem;
+    padding: 1.25rem;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    transform: none;
-    position: relative;
   }
+
   .modal-agenda {
-    border-radius: 20px 20px 0 0;
-    max-height: 92vh;
+    border-radius: 0;
+    height: 100vh;
+    max-height: 100vh;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
+
+  .modal-auth {
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    overflow-y: auto;
+  }
+
+  /* HEADER FIJO ARRIBA */
   .agenda-header {
-    padding: 1.25rem;
+    padding: 1rem 1.25rem;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
     flex-shrink: 0;
   }
   .agenda-titulo { font-size: 18px; }
+  .agenda-sub { font-size: 12px; }
   .pasos-indicador { align-self: flex-start; }
+  .paso-dot { width: 22px; height: 22px; font-size: 10px; }
+  .paso-linea { width: 12px; }
 
-  /* SCROLL INTERNO SOLO EN EL BODY DEL MODAL */
+  /* CONTENIDO CON SCROLL VERTICAL SOLO */
   .agenda-panel {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    max-height: calc(92vh - 130px);
     flex: 1;
-  }
-  .agenda-body {
-    padding: 1rem 1.25rem;
-    gap: 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 
-  /* ESPECIALIDADES */
+  .agenda-body {
+    padding: 1rem 1.25rem 2rem;
+    gap: 1rem;
+    min-height: 100%;
+  }
+
+  /* SECCION LABEL */
+  .agenda-section-label { font-size: 10px; }
+
+  /* ESPECIALIDADES 3 COLUMNAS EN MOVIL */
   .especialidades-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 6px;
   }
-  .esp-item { padding: 8px 4px; font-size: 10px; }
-  .esp-item span { font-size: 16px; }
+  .esp-item { padding: 10px 4px; font-size: 10px; gap: 4px; }
+  .esp-item span { font-size: 18px; }
 
   /* SUCURSALES */
-  .sucursal-item { padding: 10px; }
+  .sucursal-item { padding: 10px 12px; }
   .sucursal-nombre { font-size: 13px; }
+  .sucursal-dir { font-size: 11px; }
 
   /* PROFESIONALES */
-  .prof-item { padding: 10px; gap: 8px; }
-  .prof-foto { width: 38px; height: 38px; }
+  .profesionales-lista { gap: 8px; }
+  .prof-item { padding: 10px 12px; gap: 10px; align-items: flex-start; }
+  .prof-foto { width: 44px; height: 44px; flex-shrink: 0; }
   .prof-nombre { font-size: 13px; }
   .prof-esp { font-size: 11px; }
   .disp-texto { font-size: 11px; }
-
-  /* CALENDARIO */
-  .cal-nav { margin-bottom: 6px; }
-  .cal-semana-label { font-size: 11px; }
-  .cal-dias { gap: 3px; }
-  .cal-dia { padding: 6px 2px; }
-  .cal-dia-num { font-size: 13px; }
-  .cal-dia-nombre { font-size: 9px; }
-  .cal-nav-btn { width: 26px; height: 26px; font-size: 16px; }
-
-  /* HORARIOS */
-  .horarios-grid { grid-template-columns: repeat(3, 1fr); gap: 5px; }
-  .horario-btn { padding: 8px 2px; font-size: 11px; }
-
-  /* BOTONES PASO */
-  .paso-btns { gap: 8px; }
-  .btn-volver { padding: 10px 14px; font-size: 12px; }
-  .btn-primary { padding: 11px 16px; font-size: 13px; }
-  .btn-primary.full { padding: 13px; }
-
-  /* RESUMEN */
-  .res-fila { font-size: 12px; flex-wrap: wrap; gap: 4px; }
-  .resumen-cita-inner { padding: 0.75rem; }
-
-  /* FORMULARIO */
-  .form-row { grid-template-columns: 1fr; }
-  .agenda-form-datos .form-row { grid-template-columns: 1fr; }
+  .disp-fila { gap: 4px; }
+  .prof-check { width: 20px; height: 20px; font-size: 9px; flex-shrink: 0; align-self: center; }
 
   /* BANNER PROF */
-  .prof-seleccionado-banner { padding: 10px 12px; }
-  .banner-prof-foto { width: 34px; height: 34px; }
+  .prof-seleccionado-banner { padding: 10px 12px; gap: 10px; }
+  .banner-prof-foto { width: 36px; height: 36px; }
   .banner-prof-nombre { font-size: 13px; }
   .banner-prof-esp { font-size: 11px; }
+  .banner-prof-sucursal { font-size: 10px; }
 
-  /* LOGIN */
-  .modal-auth {
-    border-radius: 20px 20px 0 0;
-    width: 100%;
+  /* CALENDARIO */
+  .cal-nav { margin-bottom: 8px; }
+  .cal-semana-label { font-size: 11px; text-align: center; }
+  .cal-nav-btn { width: 28px; height: 28px; font-size: 16px; }
+  .cal-dias { gap: 4px; }
+  .cal-dia { padding: 7px 2px; border-radius: 6px; }
+  .cal-dia-nombre { font-size: 9px; letter-spacing: 0; }
+  .cal-dia-num { font-size: 14px; }
+
+  /* HORARIOS 4 COLUMNAS */
+  .horarios-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .horario-btn { padding: 10px 2px; font-size: 12px; }
+
+  /* BOTONES DE PASO */
+  .paso-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 8px;
   }
+  .btn-volver {
+    padding: 12px 8px;
+    font-size: 12px;
+    text-align: center;
+  }
+  .btn-primary {
+    padding: 12px 8px;
+    font-size: 12px;
+    text-align: center;
+  }
+  .btn-primary.full {
+    padding: 13px;
+    font-size: 14px;
+  }
+
+  /* RESUMEN */
+  .resumen-cita-inner { padding: 0.75rem 1rem; }
+  .res-fila { font-size: 12px; }
+  .hora-badge { font-size: 12px; padding: 2px 8px; }
+
+  /* FORMULARIO DATOS */
+  .form-row { grid-template-columns: 1fr; }
+  .form-input { padding: 11px 14px; font-size: 14px; }
+  .form-select { padding: 11px 14px; font-size: 14px; }
+  .agenda-nota { font-size: 11px; }
+
+  /* CONFIRMACION */
+  .agenda-confirmacion { padding: 2rem 1.25rem; }
+  .confirmacion-icono { font-size: 48px; }
+  .confirmacion-titulo { font-size: 22px; }
+  .confirmacion-desc { font-size: 13px; }
+  .confirmacion-resumen { padding: 0.75rem 1rem; }
 }
